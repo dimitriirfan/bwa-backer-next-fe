@@ -1,10 +1,17 @@
 import { faBars, faChevronCircleDown, faChevronDown, faGlobe, faLanguage } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Menu, Transition } from "@headlessui/react"
+import { useRouter } from "next/router"
 import { Fragment } from "react"
 import Button from "./Button"
 
 const Header = () => {
+    const router = useRouter()
+    const handleLocaleChange = (locale) => {
+      router.push(router.route, router.asPath, {
+        locale: locale
+      })
+    }
     return (
         <div className='font-medium'>
         <div className='container mx-auto flex justify-between p-8 items-center'>
@@ -25,7 +32,7 @@ const Header = () => {
               <Menu.Button>
                 <div className="inline-flex items-center gap-2 text-xl cursor-pointer">
                   <FontAwesomeIcon className="" icon={faGlobe}/>
-                  <p className="">ID</p>
+                  <p className="">{router.locale.toUpperCase()}</p>
                   <FontAwesomeIcon className="" icon={faChevronDown} />
                 </div>
               </Menu.Button>
@@ -42,9 +49,9 @@ const Header = () => {
                     {({ active }) => (
                       <a
                         className={`${active && 'bg-blue-500 rounded-lg text-white'} p-2`}
-                        href="/account-settings"
+                        onClick={() => handleLocaleChange('id')}
                       >
-                        Bahasa Indonesia
+                        Bahasa Indonesia - ID
                       </a>
                     )}
                   </Menu.Item>
@@ -52,19 +59,19 @@ const Header = () => {
                     {({ active }) => (
                       <a
                         className={`${active && 'bg-blue-500 rounded-lg text-white'} p-2`}
-                        href="/account-settings"
+                        onClick={() => handleLocaleChange('en')}
                       >
-                        English
+                        English - EN
                       </a>
                     )}
                   </Menu.Item>
                 </Menu.Items>
              </Transition>
             </Menu>
-            <Button className="text-xl rounded-full" type="hollow">
+            <Button className="rounded-full" type="hollow">
               Sign up
             </Button>
-            <Button className="text-xl rounded-full" type="hollow">
+            <Button className="rounded-full" type="hollow">
               My Account
             </Button>            
           </div>

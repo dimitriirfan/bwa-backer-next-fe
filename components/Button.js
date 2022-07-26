@@ -1,7 +1,7 @@
 const Button = (props) => {
 
     let button
-    const defaultStyle = 'rounded-3xl py-3 px-6 rounded cursor-pointer sm:text-xl font-semibold'
+    const defaultStyle = 'rounded-3xl py-3 px-6 rounded cursor-pointer font-semibold'
     if (props.type == 'primary' || props.type == "") {
         button = (
             <div className={`${props.className} ${defaultStyle} bg-orange-400`}>
