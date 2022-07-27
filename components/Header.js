@@ -1,6 +1,7 @@
 import { faBars, faChevronCircleDown, faChevronDown, faGlobe, faLanguage } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Menu, Transition } from "@headlessui/react"
+import Link from "next/link"
 import { useRouter } from "next/router"
 import { Fragment } from "react"
 import Button from "./Button"
@@ -12,6 +13,7 @@ const Header = () => {
         locale: locale
       })
     }
+
     return (
         <div className='font-medium'>
         <div className='container mx-auto flex justify-between p-8 items-center'>
@@ -68,12 +70,16 @@ const Header = () => {
                 </Menu.Items>
              </Transition>
             </Menu>
-            <Button className="rounded-full" type="hollow">
-              Sign up
-            </Button>
-            <Button className="rounded-full" type="hollow">
-              My Account
-            </Button>            
+            <Link href="/signup">
+              <Button className="rounded-full" type="hollow">
+                Sign up
+              </Button>
+            </Link>
+            <Link href="/my-account">
+              <Button className="rounded-full" type="hollow">
+                My Account
+              </Button>            
+            </Link>
           </div>
           <div className='sm:hidden cursor-pointer p-1'>
             <FontAwesomeIcon className='text-2xl' icon={faBars} />
